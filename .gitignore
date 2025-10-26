@@ -57,8 +57,3 @@ coverage/
 .DS_Store
 Thumbs.db
 
-
-
-# Documentation files
-*.md
-!README.md
