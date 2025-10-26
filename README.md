@@ -75,9 +75,9 @@ Built With
 - Database:** Room (planned) / MockData (current)
 
 
-**Happy Cooking! 👨‍🍳👩‍🍳
+Happy Cooking! 👨‍🍳👩‍🍳
 
-*Remember: The best meal is the one you actually cook. Let's make that easier!*
+Remember: The best meal is the one you actually cook. Let's make that easier!
 
 ---
 
