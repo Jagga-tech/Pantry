@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dimensions for small phones (<360dp width) -->
+<resources>
+    <!-- Reduced spacing for small phones -->
+    <dimen name="spacing_16">12dp</dimen>
+    <dimen name="spacing_20">16dp</dimen>
+
+    <!-- Smaller components for small phones -->
+    <dimen name="quick_action_card_width">120dp</dimen>
+    <dimen name="recipe_card_width">180dp</dimen>
+    <dimen name="stat_card_height">100dp</dimen>
+
+    <!-- Adjusted text sizes -->
+    <dimen name="text_size_20">18sp</dimen>
+    <dimen name="text_size_32">28sp</dimen>
+
+    <!-- Onboarding for small phones -->
+    <dimen name="onboarding_illustration_height">240dp</dimen>
+    <dimen name="text_size_26">24sp</dimen>
+    <dimen name="text_size_15">14sp</dimen>
+    <dimen name="onboarding_content_max_width">280dp</dimen>
+</resources>

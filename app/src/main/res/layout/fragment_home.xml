@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/bottom_spacing">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- SECTION 1: HEADER WITH PROFILE (80dp height) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/header_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_20"
+                android:background="@color/background_white"
+                android:elevation="2dp">
+
+                <!-- Profile Picture with Border -->
+                <FrameLayout
+                    android:id="@+id/profile_container"
+                    android:layout_width="@dimen/profile_picture_size"
+                    android:layout_height="@dimen/profile_picture_size">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/background_white"
+                        app:cardCornerRadius="@dimen/corner_radius_28"
+                        app:cardElevation="2dp"
+                        app:strokeColor="@color/background_white"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:id="@+id/profile_picture"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Profile"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_profile" />
+                    </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
+
+                <!-- Greeting Text -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/spacing_12"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/greeting_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_greeting_morning"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_14" />
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4"
+                        android:text="User Name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_20"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Notification Bell with Badge -->
+                <FrameLayout
+                    android:id="@+id/notification_container"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="@dimen/spacing_20">
+
+                    <ImageView
+                        android:id="@+id/notification_bell"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/home_notification"
+                        android:src="@drawable/ic_notifications"
+                        android:tint="@color/text_secondary" />
+
+                    <!-- Notification Badge (Hidden by default) -->
+                    <View
+                        android:id="@+id/notification_badge"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="top|end"
+                        android:background="@drawable/background_circle_red"
+                        android:visibility="gone" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- SECTION 2: HERO SEARCH BAR (56dp height) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/search_card"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_bar_height"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_20"
+                app:cardBackgroundColor="@color/background_white"
+                app:cardCornerRadius="@dimen/corner_radius_28"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/divider_color"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/spacing_16">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Search"
+                        android:src="@drawable/ic_search"
+                        android:tint="@color/primary_green" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/spacing_12"
+                        android:text="@string/home_search_hint"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Microphone"
+                        android:src="@drawable/ic_microphone"
+                        android:tint="@color/text_tertiary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- SECTION 3: QUICK STATS CARDS (140dp height) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- Pantry Items Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/pantry_stats_card"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/spacing_12"
+                    app:cardBackgroundColor="@color/primary_green_light"
+                    app:cardCornerRadius="@dimen/corner_radius_20"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="Pantry"
+                            android:src="@drawable/ic_basket"
+                            android:tint="@color/primary_green" />
+
+                        <TextView
+                            android:id="@+id/pantry_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            android:text="13"
+                            android:textColor="@color/primary_green"
+                            android:textSize="@dimen/text_size_32"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:text="@string/home_pantry_items"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_13" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Saved Recipes Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/recipes_stats_card"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/spacing_12"
+                    app:cardBackgroundColor="@color/secondary_orange_light"
+                    app:cardCornerRadius="@dimen/corner_radius_20"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="Recipes"
+                            android:src="@drawable/ic_recipe_book"
+                            android:tint="@color/secondary_orange" />
+
+                        <TextView
+                            android:id="@+id/recipes_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            android:text="12"
+                            android:textColor="@color/secondary_orange"
+                            android:textSize="@dimen/text_size_32"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:text="@string/home_saved_recipes"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_13" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- SECTION 4: QUICK ACTIONS (160dp height) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_20"
+                    android:text="@string/home_quick_actions"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_20"
+                    android:textStyle="bold" />
+
+                <!-- Horizontal Scrollable Quick Action Cards -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:paddingStart="@dimen/spacing_20"
+                    android:paddingEnd="@dimen/spacing_20"
+                    android:paddingVertical="@dimen/spacing_12">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <!-- Add Ingredient Card -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/action_add_ingredient"
+                            android:layout_width="@dimen/quick_action_card_width"
+                            android:layout_height="@dimen/quick_action_card_height"
+                            android:layout_marginEnd="@dimen/spacing_12"
+                            app:cardBackgroundColor="@color/background_white"
+                            app:cardCornerRadius="@dimen/corner_radius_16"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/spacing_12">
+
+                                <FrameLayout
+                                    android:layout_width="@dimen/quick_action_icon_circle"
+                                    android:layout_height="@dimen/quick_action_icon_circle"
+                                    android:background="@drawable/background_circle_green"
+                                    android:layout_marginBottom="@dimen/spacing_12">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/quick_action_icon_size"
+                                        android:layout_height="@dimen/quick_action_icon_size"
+                                        android:layout_gravity="center"
+                                        android:contentDescription="Add Ingredient"
+                                        android:src="@drawable/ic_add"
+                                        android:tint="@color/primary_green" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:text="@string/home_add_ingredient"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="@dimen/text_size_14"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Find Recipe Card -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/action_find_recipe"
+                            android:layout_width="@dimen/quick_action_card_width"
+                            android:layout_height="@dimen/quick_action_card_height"
+                            android:layout_marginEnd="@dimen/spacing_12"
+                            app:cardBackgroundColor="@color/background_white"
+                            app:cardCornerRadius="@dimen/corner_radius_16"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/spacing_12">
+
+                                <FrameLayout
+                                    android:layout_width="@dimen/quick_action_icon_circle"
+                                    android:layout_height="@dimen/quick_action_icon_circle"
+                                    android:background="@drawable/background_circle_orange"
+                                    android:layout_marginBottom="@dimen/spacing_12">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/quick_action_icon_size"
+                                        android:layout_height="@dimen/quick_action_icon_size"
+                                        android:layout_gravity="center"
+                                        android:contentDescription="Find Recipe"
+                                        android:src="@drawable/ic_search"
+                                        android:tint="@color/secondary_orange" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:text="@string/home_find_recipe"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="@dimen/text_size_14"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Meal Planner Card -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/action_meal_planner"
+                            android:layout_width="@dimen/quick_action_card_width"
+                            android:layout_height="@dimen/quick_action_card_height"
+                            android:layout_marginEnd="@dimen/spacing_12"
+                            app:cardBackgroundColor="@color/background_white"
+                            app:cardCornerRadius="@dimen/corner_radius_16"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/spacing_12">
+
+                                <FrameLayout
+                                    android:layout_width="@dimen/quick_action_icon_circle"
+                                    android:layout_height="@dimen/quick_action_icon_circle"
+                                    android:background="@drawable/background_circle_purple"
+                                    android:layout_marginBottom="@dimen/spacing_12">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/quick_action_icon_size"
+                                        android:layout_height="@dimen/quick_action_icon_size"
+                                        android:layout_gravity="center"
+                                        android:contentDescription="Meal Planner"
+                                        android:src="@drawable/ic_calendar"
+                                        android:tint="@color/accent_purple" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:text="@string/home_meal_planner"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="@dimen/text_size_14"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Scan Item Card -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/action_scan_item"
+                            android:layout_width="@dimen/quick_action_card_width"
+                            android:layout_height="@dimen/quick_action_card_height"
+                            app:cardBackgroundColor="@color/background_white"
+                            app:cardCornerRadius="@dimen/corner_radius_16"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/spacing_12">
+
+                                <FrameLayout
+                                    android:layout_width="@dimen/quick_action_icon_circle"
+                                    android:layout_height="@dimen/quick_action_icon_circle"
+                                    android:background="@drawable/background_circle_blue"
+                                    android:layout_marginBottom="@dimen/spacing_12">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/quick_action_icon_size"
+                                        android:layout_height="@dimen/quick_action_icon_size"
+                                        android:layout_gravity="center"
+                                        android:contentDescription="Scan Item"
+                                        android:src="@drawable/ic_barcode"
+                                        android:tint="@color/accent_blue" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:text="@string/home_scan_item"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="@dimen/text_size_14"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- SECTION 5: EXPIRING SOON ALERT (Conditional) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/expiring_alert_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/background_white"
+                app:cardCornerRadius="@dimen/corner_radius_16"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/warning_orange"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/spacing_16">
+
+                    <!-- Left Side (70% width) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical">
+
+                        <!-- Header with Icon -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/spacing_8">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:contentDescription="Warning"
+                                android:src="@drawable/ic_warning"
+                                android:tint="@color/warning_orange" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_8"
+                                android:text="@string/home_expiring_soon"
+                                android:textColor="@color/warning_orange"
+                                android:textSize="@dimen/text_size_16"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Item List -->
+                        <TextView
+                            android:id="@+id/expiring_items_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_12"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="@string/home_expiring_items"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_14" />
+
+                        <!-- Find Recipes Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/expiring_find_recipes_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/small_button_height"
+                            android:text="@string/home_find_recipes_btn"
+                            android:textSize="@dimen/text_size_12"
+                            app:backgroundTint="@color/secondary_orange_light"
+                            app:cornerRadius="@dimen/corner_radius_18"
+                            app:icon="@drawable/ic_search"
+                            app:iconTint="@color/secondary_orange"
+                            android:textColor="@color/secondary_orange" />
+                    </LinearLayout>
+
+                    <!-- Right Side (30% width) - Badge -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/badge_size"
+                        android:layout_weight="0.3"
+                        android:layout_marginStart="@dimen/spacing_12"
+                        android:gravity="center">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="@dimen/badge_size"
+                            android:layout_height="@dimen/badge_size"
+                            app:cardBackgroundColor="@color/warning_orange"
+                            app:cardCornerRadius="@dimen/corner_radius_28">
+
+                            <TextView
+                                android:id="@+id/expiring_count_badge"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/text_white"
+                                android:textSize="@dimen/text_size_24"
+                                android:textStyle="bold" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </FrameLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- SECTION 6: RECIPE SUGGESTIONS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_32"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_recipes_you_can_make"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_20"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_see_all"
+                        android:textColor="@color/primary_green"
+                        android:textSize="@dimen/text_size_14"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="@dimen/spacing_4"
+                        android:contentDescription="See All"
+                        android:src="@drawable/ic_arrow_forward"
+                        android:tint="@color/primary_green" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Recipe Cards Horizontal Scroll -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingStart="@dimen/spacing_20"
+                android:paddingEnd="@dimen/spacing_20"
+                android:paddingVertical="@dimen/spacing_12">
+
+                <LinearLayout
+                    android:id="@+id/recipes_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <!-- SECTION 7: POPULAR RECIPES (Optional) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_32"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_popular_recipes"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_20"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_see_all"
+                        android:textColor="@color/primary_green"
+                        android:textSize="@dimen/text_size_14"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="@dimen/spacing_4"
+                        android:contentDescription="See All"
+                        android:src="@drawable/ic_arrow_forward"
+                        android:tint="@color/primary_green" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Popular Recipes Grid -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popular_recipes_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_20"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:layout_marginBottom="@dimen/spacing_24"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
+
+            <!-- EMPTY STATE (Hidden by default) -->
+            <LinearLayout
+                android:id="@+id/empty_state_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/spacing_20"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/spacing_32">
+
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:contentDescription="Empty State"
+                    android:src="@drawable/ic_onboarding_1"
+                    android:scaleType="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/home_get_started"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_20"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:text="@string/home_empty_desc"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_14" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_first_ingredient_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/home_add_first_ingredient"
+                    app:cornerRadius="@dimen/corner_radius_12" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_add_pantry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/spacing_16"
+        android:text="@string/home_add_to_pantry"
+        app:icon="@drawable/ic_add" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

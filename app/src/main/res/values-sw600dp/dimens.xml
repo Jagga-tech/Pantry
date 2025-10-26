@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dimensions for tablet screens (600dp+ width) -->
+<resources>
+    <!-- Increased spacing for tablets -->
+    <dimen name="spacing_20">28dp</dimen>
+    <dimen name="spacing_24">32dp</dimen>
+    <dimen name="spacing_32">40dp</dimen>
+
+    <!-- Larger text sizes for tablets -->
+    <dimen name="text_size_16">18sp</dimen>
+    <dimen name="text_size_20">24sp</dimen>
+    <dimen name="text_size_32">40sp</dimen>
+
+    <!-- Larger components for tablets -->
+    <dimen name="quick_action_card_width">160dp</dimen>
+    <dimen name="quick_action_card_height">140dp</dimen>
+    <dimen name="recipe_card_width">240dp</dimen>
+    <dimen name="recipe_image_height">160dp</dimen>
+    <dimen name="stat_card_height">140dp</dimen>
+    <dimen name="profile_picture_size">56dp</dimen>
+
+    <!-- Max content width for tablets -->
+    <dimen name="max_content_width">600dp</dimen>
+
+    <!-- Onboarding for tablets -->
+    <dimen name="onboarding_illustration_height">480dp</dimen>
+    <dimen name="text_size_26">36sp</dimen>
+    <dimen name="text_size_15">20sp</dimen>
+    <dimen name="onboarding_content_max_width">480dp</dimen>
+    <dimen name="onboarding_skip_button_height">48dp</dimen>
+</resources>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pantrypal</string>
+    <string name="tagline">Turn Ingredients into Magic</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_tagline">Turn Ingredients into Magic</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_get_started">Get Started</string>
+    <string name="onboarding_lets_begin">Let\'s Begin!</string>
+
+    <string name="onboarding_page1_title">Find Recipes Instantly</string>
+    <string name="onboarding_page1_desc">Search by ingredients you have in your pantry. No more wasting food or wondering what to cook!</string>
+    <string name="onboarding_page1_alt_title">Cook with What You Have</string>
+    <string name="onboarding_page1_alt_desc">Enter the ingredients you have, and discover delicious recipes you can make right now.</string>
+
+    <string name="onboarding_page2_title">Never Waste Food Again</string>
+    <string name="onboarding_page2_desc">Get notified when ingredients are about to expire and find recipes to use them before it\'s too late.</string>
+    <string name="onboarding_page2_alt_title">Smart Expiration Alerts</string>
+    <string name="onboarding_page2_alt_desc">Track your pantry, get smart alerts, and save money by reducing food waste.</string>
+
+    <string name="onboarding_page3_title">Plan Your Week Ahead</string>
+    <string name="onboarding_page3_desc">Create weekly meal plans, auto-generate shopping lists, and make cooking easier than ever.</string>
+    <string name="onboarding_page3_alt_title">Organize Your Meals Effortlessly</string>
+    <string name="onboarding_page3_alt_desc">Stay organized with smart meal planning and never stress about what to cook again.</string>
+
+    <string name="onboarding_page1_hint">Page 1 of 3</string>
+    <string name="onboarding_page2_hint">Page 2 of 3</string>
+    <string name="onboarding_page3_hint">Page 3 of 3</string>
+
+    <!-- Login -->
+    <string name="login_title">Welcome Back!</string>
+    <string name="login_subtitle">Login to continue your cooking journey</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_forgot_password">Forgot Password?</string>
+    <string name="login_button">Login</string>
+    <string name="login_or_divider">OR</string>
+    <string name="login_google">Login with Google</string>
+    <string name="login_facebook">Login with Facebook</string>
+    <string name="login_signup_prompt">Don\'t have an account? Sign Up</string>
+
+    <!-- Sign Up -->
+    <string name="signup_title">Create Account</string>
+    <string name="signup_name_hint">Full Name</string>
+    <string name="signup_email_hint">Email</string>
+    <string name="signup_password_hint">Password</string>
+    <string name="signup_confirm_password_hint">Confirm Password</string>
+    <string name="signup_dietary_title">Dietary Preferences (Optional)</string>
+    <string name="signup_terms_agree">I agree to Terms &amp; Conditions</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="signup_login_prompt">Already have account? Login</string>
+
+    <!-- Home Screen -->
+    <string name="home_notification">Notifications</string>
+    <string name="home_greeting_morning">Good Morning!</string>
+    <string name="home_greeting_afternoon">Good Afternoon!</string>
+    <string name="home_greeting_evening">Good Evening!</string>
+    <string name="home_search_hint">What\'s in your pantry?</string>
+    <string name="home_pantry_items">Pantry Items</string>
+    <string name="home_saved_recipes">Saved Recipes</string>
+    <string name="home_quick_actions">Quick Actions</string>
+    <string name="home_add_ingredient">Add Ingredient</string>
+    <string name="home_find_recipe">Find Recipe</string>
+    <string name="home_meal_planner">Meal Planner</string>
+    <string name="home_scan_item">Scan Item</string>
+    <string name="home_expiring_soon">Items Expiring Soon!</string>
+    <string name="home_expiring_items">Tomatoes, Milk, Chicken breast</string>
+    <string name="home_find_recipes_btn">Find Recipes</string>
+    <string name="home_recipes_you_can_make">Recipes You Can Make</string>
+    <string name="home_popular_recipes">Popular Recipes</string>
+    <string name="home_see_all">See All</string>
+    <string name="home_add_to_pantry">Add to Pantry</string>
+    <string name="home_get_started">Let\'s Get Started!</string>
+    <string name="home_empty_desc">Add ingredients to your pantry and discover amazing recipes</string>
+    <string name="home_add_first_ingredient">Add Your First Ingredient</string>
+    <string name="home_recipe_match">%d%% Match</string>
+    <string name="home_recipe_time">%d min</string>
+    <string name="home_recipe_difficulty">Easy</string>
+
+    <!-- Ingredient Input -->
+    <string name="ingredient_find_recipes">Find Recipes</string>
+    <string name="ingredient_common">Common Ingredients</string>
+    <string name="ingredient_clear_all">Clear All</string>
+
+    <!-- Recipe Search Results -->
+    <string name="recipe_results_title">Recipes for You</string>
+    <string name="recipe_sort_best_match">Best Match</string>
+    <string name="recipe_sort_quick">Quick &amp; Easy</string>
+    <string name="recipe_sort_protein">High Protein</string>
+    <string name="recipe_sort_low_cal">Low Calorie</string>
+
+    <!-- Recipe Detail -->
+    <string name="recipe_detail_ingredients">Ingredients</string>
+    <string name="recipe_detail_instructions">Instructions</string>
+    <string name="recipe_detail_nutrition">Nutrition</string>
+    <string name="recipe_detail_save_favorite">Save to Favorites</string>
+    <string name="recipe_detail_remove_favorite">Remove from Favorites</string>
+    <string name="recipe_detail_share">Share Recipe</string>
+    <string name="recipe_detail_add_meal_plan">Add to Meal Plan</string>
+
+    <!-- Browse Recipes -->
+    <string name="browse_recipes_title">Browse Recipes</string>
+    <string name="browse_search_hint">Search recipes...</string>
+
+    <!-- My Favorites -->
+    <string name="favorites_title">My Favorite Recipes</string>
+    <string name="favorites_empty">No favorites yet</string>
+    <string name="favorites_empty_desc">Browse recipes to add favorites</string>
+
+    <!-- My Pantry -->
+    <string name="pantry_title">My Pantry</string>
+    <string name="pantry_empty">Your pantry is empty</string>
+    <string name="pantry_empty_desc">Add ingredients to get started</string>
+    <string name="pantry_add_item">Add Item</string>
+
+    <!-- Add/Edit Pantry Item -->
+    <string name="pantry_item_name_hint">Ingredient Name</string>
+    <string name="pantry_item_quantity_hint">Quantity</string>
+    <string name="pantry_item_category_hint">Category</string>
+    <string name="pantry_item_expiry_hint">Expiration Date</string>
+    <string name="pantry_item_notes_hint">Notes</string>
+    <string name="pantry_item_add">Add to Pantry</string>
+    <string name="pantry_item_save">Save Changes</string>
+    <string name="pantry_item_delete">Delete Item</string>
+    <string name="pantry_item_cancel">Cancel</string>
+
+    <!-- Profile & Settings -->
+    <string name="profile_title">Profile &amp; Settings</string>
+    <string name="profile_edit_profile">Edit Profile</string>
+    <string name="profile_statistics">Statistics</string>
+    <string name="profile_dietary_pref">Dietary Preferences</string>
+    <string name="profile_account_settings">Account Settings</string>
+    <string name="profile_change_password">Change Password</string>
+    <string name="profile_email_notifications">Email Notifications</string>
+    <string name="profile_push_notifications">Push Notifications</string>
+    <string name="profile_logout">Logout</string>
+
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="search">Search</string>
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    <string name="no_results">No results found</string>
+</resources>

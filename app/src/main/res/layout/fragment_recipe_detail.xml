@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Hero Image -->
+    <ImageView
+        android:id="@+id/recipe_image"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:contentDescription="Recipe"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_app_logo" />
+
+    <!-- Info Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_16">
+
+        <TextView
+            android:id="@+id/cook_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="30 min"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_14" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Minus"
+                android:src="@drawable/ic_add" />
+
+            <TextView
+                android:id="@+id/servings"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_14" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Plus"
+                android:src="@drawable/ic_add" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/difficulty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Medium"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_14" />
+
+        <TextView
+            android:id="@+id/calories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="500 kcal"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_14" />
+    </LinearLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/recipe_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/spacing_16"
+        android:text="Recipe Name"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_size_24"
+        android:textStyle="bold" />
+
+    <!-- Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabTextColor="@color/text_secondary"
+        app:tabSelectedTextColor="@color/primary_green" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_16">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/favorite_icon"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:text="Favorite"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/share_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="1"
+            android:text="Share" />
+    </LinearLayout>
+</LinearLayout>

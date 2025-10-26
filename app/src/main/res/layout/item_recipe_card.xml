@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/recipe_card_width"
+    android:layout_height="260dp"
+    android:layout_margin="@dimen/spacing_8"
+    app:cardBackgroundColor="@color/background_white"
+    app:cardCornerRadius="@dimen/corner_radius_20"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Image Section with Overlays -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recipe_image_height">
+
+            <ImageView
+                android:id="@+id/recipe_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Recipe Image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_onboarding_1" />
+
+            <!-- Match Badge (Top-Left) -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_10"
+                app:cardBackgroundColor="@color/primary_green"
+                app:cardCornerRadius="@dimen/corner_radius_12"
+                app:cardElevation="2dp">
+
+                <TextView
+                    android:id="@+id/match_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/spacing_8"
+                    android:paddingVertical="@dimen/spacing_4"
+                    android:text="90% Match"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_size_11"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Favorite Heart (Top-Right) -->
+            <FrameLayout
+                android:id="@+id/favorite_button"
+                android:layout_width="@dimen/notification_badge_size"
+                android:layout_height="@dimen/notification_badge_size"
+                android:layout_gravity="top|end"
+                android:layout_margin="@dimen/spacing_10"
+                android:background="@drawable/background_circle_white">
+
+                <ImageView
+                    android:id="@+id/heart_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Favorite"
+                    android:src="@drawable/ic_favorite"
+                    android:tint="@color/error_red" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <!-- Content Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_12">
+
+            <!-- Recipe Name -->
+            <TextView
+                android:id="@+id/recipe_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Chicken Stir Fry"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
+
+            <!-- Info Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Time Info -->
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="Time"
+                    android:src="@drawable/ic_clock"
+                    android:tint="@color/text_tertiary" />
+
+                <TextView
+                    android:id="@+id/recipe_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_4"
+                    android:text="25 min"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_12" />
+
+                <!-- Separator Dot -->
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginHorizontal="@dimen/spacing_8"
+                    android:background="@color/divider_color" />
+
+                <!-- Difficulty -->
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="Difficulty"
+                    android:src="@drawable/ic_difficulty"
+                    android:tint="@color/text_tertiary" />
+
+                <TextView
+                    android:id="@+id/recipe_difficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_4"
+                    android:text="Easy"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

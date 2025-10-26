@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dimensions for landscape orientation -->
+<resources>
+    <!-- Reduced heights for landscape to fit content -->
+    <dimen name="onboarding_illustration_height">260dp</dimen>
+    <dimen name="hero_image_height">200dp</dimen>
+    
+    <!-- Adjusted spacing for landscape -->
+    <dimen name="spacing_32">24dp</dimen>
+    
+    <!-- Text size adjustments for landscape -->
+    <dimen name="text_size_28">24sp</dimen>
+    <dimen name="text_size_26">22sp</dimen>
+    <dimen name="text_size_20">16sp</dimen>
+</resources>

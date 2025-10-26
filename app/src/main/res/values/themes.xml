@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Pantrypal" parent="Theme.MaterialComponents.Light">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryVariant">@color/primary_green_dark</item>
+        <item name="colorSecondary">@color/secondary_orange</item>
+        <item name="colorSecondaryVariant">@color/secondary_orange_dark</item>
+        <item name="colorTertiary">@color/accent_purple</item>
+
+        <!-- Status colors -->
+        <item name="colorError">@color/error_red</item>
+        <item name="colorOnError">@color/text_white</item>
+
+        <!-- Background -->
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/background_white</item>
+
+        <!-- Text appearance -->
+        <item name="colorOnPrimary">@color/text_white</item>
+        <item name="colorOnSecondary">@color/text_white</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <!-- Material You -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Pantrypal.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Pantrypal.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Pantrypal.LargeComponent</item>
+    </style>
+
+    <!-- Shape Appearances -->
+    <style name="ShapeAppearance.Pantrypal.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Pantrypal.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Pantrypal.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="Widget.Pantrypal.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:paddingStart">@dimen/spacing_24</item>
+        <item name="android:paddingEnd">@dimen/spacing_24</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <!-- Text Input Styles -->
+    <style name="Widget.Pantrypal.TextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+    </style>
+
+    <!-- Card Styles -->
+    <style name="Widget.Pantrypal.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <!-- Quick Action Card Styles -->
+    <style name="Widget.Pantrypal.QuickActionCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/background_white</item>
+    </style>
+
+    <!-- Recipe Card Styles -->
+    <style name="Widget.Pantrypal.RecipeCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/background_white</item>
+    </style>
+
+    <!-- Stats Card Styles -->
+    <style name="Widget.Pantrypal.StatsCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">3dp</item>
+    </style>
+</resources>
