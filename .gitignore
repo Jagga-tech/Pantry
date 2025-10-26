@@ -57,8 +57,7 @@ coverage/
 .DS_Store
 Thumbs.db
 
-# Zencoder configuration and docs (AI assistant files)
-.zencoder/
+
 
 # Documentation files
 *.md
