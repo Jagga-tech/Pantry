@@ -7,15 +7,18 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pantrypal.databinding.FragmentFavoritesBinding;
+import com.pantrypal.ui.adapter.RecipeGridAdapter;
 import com.pantrypal.ui.viewmodel.RecipeViewModel;
 
 public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
     private RecipeViewModel recipeViewModel;
     private RecyclerView favoritesRecyclerView;
+    private RecipeGridAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +33,14 @@ public class FavoritesFragment extends Fragment {
 
         recipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
         favoritesRecyclerView = binding.favoritesRecyclerView;
+        
+        // Setup RecyclerView with GridLayoutManager
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        favoritesRecyclerView.setLayoutManager(gridLayoutManager);
+        
+        // Create adapter
+        adapter = new RecipeGridAdapter();
+        favoritesRecyclerView.setAdapter(adapter);
 
         setupFavorites();
     }
@@ -42,7 +53,8 @@ public class FavoritesFragment extends Fragment {
             } else {
                 binding.emptyState.setVisibility(View.GONE);
                 favoritesRecyclerView.setVisibility(View.VISIBLE);
-                // Update recycler view with recipes
+                // Update adapter with recipes
+                adapter.submitList(recipes);
             }
         });
     }

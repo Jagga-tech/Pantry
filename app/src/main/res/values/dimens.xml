@@ -25,10 +25,12 @@
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_13">13sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
     <dimen name="text_size_28">28sp</dimen>
     <dimen name="text_size_32">32sp</dimen>
     <dimen name="text_size_36">36sp</dimen>
@@ -74,4 +76,7 @@
     <dimen name="onboarding_skip_button_min_width">80dp</dimen>
     <dimen name="onboarding_illustration_height">360dp</dimen>
     <dimen name="onboarding_content_max_width">300dp</dimen>
+    
+    <!-- Max Content Width (for layout constraints) -->
+    <dimen name="max_content_width">1000dp</dimen>
 </resources>

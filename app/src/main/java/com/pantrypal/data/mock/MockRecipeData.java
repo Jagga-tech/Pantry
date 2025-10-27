@@ -27,7 +27,7 @@ public class MockRecipeData {
                         "Add cream and garam masala",
                         "Simmer for 10 more minutes until thick",
                         "Serve hot with naan or rice"),
-                toJsonObject("420", "32g", "18g", "26g"), 4, 420, false, 95.0));
+                toJsonObject("420", "32g", "18g", "26g"), 4, 420, true, 95.0));
 
         // RECIPE 2: Palak Paneer
         recipes.add(new Recipe(2, "Palak Paneer", 
@@ -42,7 +42,7 @@ public class MockRecipeData {
                         "Add spinach puree and spices",
                         "Add paneer cubes and cream",
                         "Simmer for 5 minutes and serve"),
-                toJsonObject("280", "16g", "14g", "18g"), 4, 280, false, 90.0));
+                toJsonObject("280", "16g", "14g", "18g"), 4, 280, true, 90.0));
 
         // RECIPE 3: Chicken Biryani
         recipes.add(new Recipe(3, "Chicken Biryani", 
@@ -58,7 +58,7 @@ public class MockRecipeData {
                         "Layer rice and fried onions",
                         "Cover and cook on low heat for 30 minutes",
                         "Serve with raita"),
-                toJsonObject("520", "28g", "65g", "16g"), 6, 520, false, 85.0));
+                toJsonObject("520", "28g", "65g", "16g"), 6, 520, true, 85.0));
 
         // RECIPE 4: Chana Masala
         recipes.add(new Recipe(4, "Chana Masala (Chickpea Curry)", 
@@ -73,7 +73,7 @@ public class MockRecipeData {
                         "Add chickpeas and water",
                         "Simmer for 15 minutes",
                         "Garnish with coriander"),
-                toJsonObject("240", "12g", "38g", "6g"), 4, 240, false, 92.0));
+                toJsonObject("240", "12g", "38g", "6g"), 4, 240, true, 92.0));
 
         // RECIPE 5: Dal Tadka
         recipes.add(new Recipe(5, "Dal Tadka", 
@@ -88,7 +88,7 @@ public class MockRecipeData {
                         "Add tomatoes and cook until soft",
                         "Pour tadka over cooked dal",
                         "Garnish with coriander"),
-                toJsonObject("180", "10g", "26g", "4g"), 4, 180, false, 90.0));
+                toJsonObject("180", "10g", "26g", "4g"), 4, 180, true, 90.0));
 
         // RECIPE 6: Aloo Gobi
         recipes.add(new Recipe(6, "Aloo Gobi (Potato Cauliflower)", 
@@ -102,7 +102,7 @@ public class MockRecipeData {
                         "Add tomatoes and spices",
                         "Cover and cook until vegetables are tender",
                         "Garnish with coriander"),
-                toJsonObject("150", "4g", "28g", "3g"), 4, 150, false, 88.0));
+                toJsonObject("150", "4g", "28g", "3g"), 4, 150, true, 88.0));
 
         // RECIPE 7: Paneer Tikka
         recipes.add(new Recipe(7, "Paneer Tikka", 
@@ -115,7 +115,7 @@ public class MockRecipeData {
                         "Thread onto skewers",
                         "Grill or bake until golden",
                         "Serve hot with chutney"),
-                toJsonObject("220", "14g", "12g", "14g"), 4, 220, false, 85.0));
+                toJsonObject("220", "14g", "12g", "14g"), 4, 220, true, 85.0));
 
         // RECIPE 8: Jeera Rice
         recipes.add(new Recipe(8, "Jeera Rice (Cumin Rice)", 
@@ -129,7 +129,7 @@ public class MockRecipeData {
                         "Add rice and sauté for 2 minutes",
                         "Add water and cook until rice is done",
                         "Fluff and serve"),
-                toJsonObject("280", "6g", "52g", "6g"), 4, 280, false, 95.0));
+                toJsonObject("280", "6g", "52g", "6g"), 4, 280, true, 95.0));
 
         // RECIPE 9: Chicken Curry
         recipes.add(new Recipe(9, "Chicken Curry", 
@@ -144,7 +144,7 @@ public class MockRecipeData {
                         "Add chicken and cook",
                         "Add water and simmer until chicken is tender",
                         "Garnish with coriander"),
-                toJsonObject("320", "28g", "16g", "16g"), 4, 320, false, 92.0));
+                toJsonObject("320", "28g", "16g", "16g"), 4, 320, true, 92.0));
 
         // RECIPE 10: Masala Dosa
         recipes.add(new Recipe(10, "Masala Dosa", 
@@ -158,7 +158,7 @@ public class MockRecipeData {
                         "Spread dosa batter thin",
                         "Add potato filling in center",
                         "Fold and serve with chutney"),
-                toJsonObject("280", "6g", "48g", "6g"), 4, 280, false, 75.0));
+                toJsonObject("280", "6g", "48g", "6g"), 4, 280, true, 75.0));
 
         // RECIPE 11: Cucumber Raita
         recipes.add(new Recipe(11, "Cucumber Raita", 
@@ -170,7 +170,7 @@ public class MockRecipeData {
                         "Add cumin powder and salt",
                         "Garnish with coriander",
                         "Chill and serve"),
-                toJsonObject("120", "4g", "8g", "6g"), 4, 120, false, 85.0));
+                toJsonObject("120", "4g", "8g", "6g"), 4, 120, true, 85.0));
 
         // RECIPE 12: Samosas
         recipes.add(new Recipe(12, "Samosas", 
@@ -183,7 +183,7 @@ public class MockRecipeData {
                         "Prepare potato-peas filling",
                         "Fill and seal samosas",
                         "Deep fry until golden"),
-                toJsonObject("280", "5g", "35g", "12g"), 4, 280, false, 80.0));
+                toJsonObject("280", "5g", "35g", "12g"), 4, 280, true, 80.0));
 
         // RECIPE 13: Chole Bhature
         recipes.add(new Recipe(13, "Chole Bhature", 
