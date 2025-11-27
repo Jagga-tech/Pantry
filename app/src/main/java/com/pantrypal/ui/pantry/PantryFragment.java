@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pantrypal.databinding.FragmentPantryBinding;
-import com.pantrypal.ui.adapter.PantryItemAdapter;
+// import com.pantrypal.ui.adapter.PantryItemAdapter; // TODO: Create adapter
 import com.pantrypal.ui.viewmodel.PantryItemViewModel;
 import com.pantrypal.util.SharedPreferencesManager;
 
@@ -19,7 +19,7 @@ public class PantryFragment extends Fragment {
     private FragmentPantryBinding binding;
     private PantryItemViewModel pantryItemViewModel;
     private RecyclerView pantryRecyclerView;
-    private PantryItemAdapter adapter;
+    // private PantryItemAdapter adapter; // TODO: Create adapter
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,13 +38,13 @@ public class PantryFragment extends Fragment {
         // Setup RecyclerView with LinearLayoutManager
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         pantryRecyclerView.setLayoutManager(linearLayoutManager);
-        
-        // Create adapter
-        adapter = new PantryItemAdapter();
-        pantryRecyclerView.setAdapter(adapter);
 
-        int userId = SharedPreferencesManager.getUserId(getContext());
-        setupPantryItems(userId);
+        // Create adapter
+        // TODO: Create PantryItemAdapter
+        // adapter = new PantryItemAdapter();
+        // pantryRecyclerView.setAdapter(adapter);
+
+        setupPantryItems();
 
         // Setup FAB for adding items
         binding.fabAddItem.setOnClickListener(v -> {
@@ -52,16 +52,16 @@ public class PantryFragment extends Fragment {
         });
     }
 
-    private void setupPantryItems(int userId) {
-        pantryItemViewModel.getAllItemsByUser(userId).observe(getViewLifecycleOwner(), items -> {
+    private void setupPantryItems() {
+        pantryItemViewModel.getAllPantryItems().observe(getViewLifecycleOwner(), items -> {
             if (items == null || items.isEmpty()) {
                 binding.emptyState.setVisibility(View.VISIBLE);
                 pantryRecyclerView.setVisibility(View.GONE);
             } else {
                 binding.emptyState.setVisibility(View.GONE);
                 pantryRecyclerView.setVisibility(View.VISIBLE);
-                // Update adapter with items
-                adapter.submitList(items);
+                // TODO: Update adapter with items when PantryItemAdapter is created
+                // adapter.submitList(items);
             }
         });
     }
