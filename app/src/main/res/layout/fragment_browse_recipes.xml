@@ -18,6 +18,34 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Dietary Preference Filter -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/spacing_16"
+        android:layout_marginBottom="@dimen/spacing_8"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/my_diet_filter_chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipes for my diet"
+            android:visibility="gone"
+            style="@style/Widget.MaterialComponents.Chip.Filter" />
+
+        <TextView
+            android:id="@+id/matching_recipes_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:text="12 matching recipes"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_12"
+            android:visibility="gone" />
+    </LinearLayout>
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/filter_chips"
         android:layout_width="match_parent"
@@ -25,6 +53,7 @@
         android:layout_marginHorizontal="@dimen/spacing_16">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="All"
@@ -32,24 +61,28 @@
             android:checked="true" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_breakfast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Breakfast"
             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_lunch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lunch"
             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_dinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dinner"
             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_dessert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dessert"

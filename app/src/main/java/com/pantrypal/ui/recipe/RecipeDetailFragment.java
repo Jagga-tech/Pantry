@@ -99,10 +99,12 @@ public class RecipeDetailFragment extends Fragment {
         binding.favoriteIcon.setOnClickListener(v -> {
             isFavorite = !isFavorite;
             if (isFavorite) {
-                recipeViewModel.addToFavorites(recipeId);
+                // TODO: Implement addToFavorites in RecipeViewModel
+                // recipeViewModel.addToFavorites(recipeId);
                 Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
             } else {
-                recipeViewModel.removeFromFavorites(recipeId);
+                // TODO: Implement removeFromFavorites in RecipeViewModel
+                // recipeViewModel.removeFromFavorites(recipeId);
                 Toast.makeText(getContext(), "Removed from favorites", Toast.LENGTH_SHORT).show();
             }
             updateFavoriteIcon();

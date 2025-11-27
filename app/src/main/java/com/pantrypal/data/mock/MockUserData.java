@@ -1,6 +1,7 @@
 package com.pantrypal.data.mock;
 
 import com.pantrypal.data.model.User;
+import java.util.Date;
 
 /**
  * Mock user data for testing
@@ -9,13 +10,13 @@ public class MockUserData {
 
     public static User getMockUser() {
         return new User(
-                1,                                      // id
+                "mock-user-1",                          // id
                 "Chan",                                 // name
                 "chan@example.com",                     // email
-                "password123",                          // password
+                "hashed-password-123",                  // passwordHash
                 "",                                     // profilePicUrl (empty for placeholder)
                 "[\"Vegetarian\"]",                     // dietaryPreferences (JSON)
-                System.currentTimeMillis()              // createdAt
+                new Date()                              // createdAt
         );
     }
 

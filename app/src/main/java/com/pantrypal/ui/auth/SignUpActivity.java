@@ -3,13 +3,14 @@ package com.pantrypal.ui.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
-import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pantrypal.R;
@@ -21,11 +22,19 @@ import com.pantrypal.util.SharedPreferencesManager;
 
 public class SignUpActivity extends AppCompatActivity {
     private ActivitySignupBinding binding;
-    private TextInputLayout nameLayout, emailLayout, passwordLayout, confirmPasswordLayout;
+    private TextInputLayout nameLayout, emailLayout, passwordLayout, confirmPasswordLayout, dietaryPreferenceLayout;
     private TextInputEditText nameInput, emailInput, passwordInput, confirmPasswordInput;
-    private ChipGroup dietaryChipGroup;
+    private AutoCompleteTextView dietaryPreferenceSpinner;
     private MaterialCheckBox termsCheckbox;
     private MaterialButton signupButton;
+
+    private static final String[] DIETARY_PREFERENCES = {
+        "None",
+        "Vegetarian",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +51,27 @@ public class SignUpActivity extends AppCompatActivity {
         emailLayout = binding.emailLayout;
         passwordLayout = binding.passwordLayout;
         confirmPasswordLayout = binding.confirmPasswordLayout;
-        
+        dietaryPreferenceLayout = binding.dietaryPreferenceLayout;
+
         nameInput = binding.nameInput;
         emailInput = binding.emailInput;
         passwordInput = binding.passwordInput;
         confirmPasswordInput = binding.confirmPasswordInput;
-        
-        dietaryChipGroup = binding.dietaryChipGroup;
+
+        dietaryPreferenceSpinner = binding.dietaryPreferenceSpinner;
         termsCheckbox = binding.termsCheckbox;
         signupButton = binding.signupButton;
+
+        // Setup dietary preference dropdown
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            DIETARY_PREFERENCES
+        );
+        dietaryPreferenceSpinner.setAdapter(adapter);
+
+        // Set default value to "None"
+        dietaryPreferenceSpinner.setText(DIETARY_PREFERENCES[0], false);
     }
 
     private void setupListeners() {
@@ -68,6 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
         String confirmPassword = confirmPasswordInput.getText().toString().trim();
+        String dietaryPreference = dietaryPreferenceSpinner.getText().toString().trim();
 
         if (!validateInputs(name, email, password, confirmPassword)) {
             return;
@@ -88,9 +110,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onSuccess(com.google.firebase.auth.FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-                    // Create user in Firestore
+                    // Create user in Firestore with complete information
                     com.pantrypal.data.model.User user = com.pantrypal.data.model.User.fromFirebaseUser(firebaseUser);
                     user.setName(name);
+                    user.setDietaryPreferences(dietaryPreference);
 
                     FirebaseUserRepository userRepository = new FirebaseUserRepository();
                     userRepository.createUser(user, new FirebaseUserRepository.RepositoryCallback<Void>() {

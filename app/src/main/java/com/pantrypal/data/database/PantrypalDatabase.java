@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.pantrypal.data.dao.IngredientDao;
@@ -23,6 +24,7 @@ import com.pantrypal.data.model.User;
 import java.util.concurrent.Executors;
 
 @Database(entities = {User.class, PantryItem.class, Recipe.class, Ingredient.class}, version = 1)
+@TypeConverters({Converters.class})
 public abstract class PantrypalDatabase extends RoomDatabase {
     private static final String TAG = "PantrypalDB";
     
