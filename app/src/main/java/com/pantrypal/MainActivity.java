@@ -7,6 +7,8 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pantrypal.databinding.ActivityMainBinding;
 import com.pantrypal.ui.auth.LoginActivity;
 import com.pantrypal.ui.home.HomeActivity;
@@ -29,7 +31,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void navigateToNextScreen() {
         boolean isFirstTime = SharedPreferencesManager.isFirstTime(this);
-        boolean isLoggedIn = SharedPreferencesManager.isLoggedIn(this);
+
+        // Check Firebase authentication status
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        boolean isLoggedIn = currentUser != null;
+
+        // Update SharedPreferences to match Firebase auth state
+        if (isLoggedIn && !SharedPreferencesManager.isLoggedIn(this)) {
+            SharedPreferencesManager.setLoggedIn(this, true);
+        } else if (!isLoggedIn && SharedPreferencesManager.isLoggedIn(this)) {
+            SharedPreferencesManager.logout(this);
+        }
 
         Intent intent;
         if (isFirstTime) {

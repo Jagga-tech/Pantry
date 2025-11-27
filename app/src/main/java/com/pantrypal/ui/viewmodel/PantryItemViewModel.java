@@ -5,52 +5,86 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pantrypal.data.model.PantryItem;
-import com.pantrypal.data.repository.PantryItemRepository;
+import com.pantrypal.data.repository.FirebasePantryRepository;
 
 import java.util.List;
 
 public class PantryItemViewModel extends AndroidViewModel {
-    private PantryItemRepository repository;
+    private FirebasePantryRepository repository;
+    private String currentUserId;
 
     public PantryItemViewModel(Application application) {
         super(application);
-        repository = new PantryItemRepository(application);
+        repository = new FirebasePantryRepository();
+
+        // Get current user ID from FirebaseAuth
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            currentUserId = currentUser.getUid();
+        }
     }
 
-    public void insert(PantryItem pantryItem) {
-        repository.insert(pantryItem);
+    public LiveData<List<PantryItem>> getAllPantryItems() {
+        if (currentUserId == null) {
+            return null;
+        }
+        return repository.getAllPantryItems(currentUserId);
     }
 
-    public void update(PantryItem pantryItem) {
-        repository.update(pantryItem);
+    public LiveData<List<PantryItem>> getExpiringItems() {
+        if (currentUserId == null) {
+            return null;
+        }
+        return repository.getExpiringItems(currentUserId);
     }
 
-    public void delete(PantryItem pantryItem) {
-        repository.delete(pantryItem);
+    public LiveData<List<PantryItem>> getPantryItemsByCategory(String category) {
+        if (currentUserId == null) {
+            return null;
+        }
+        return repository.getPantryItemsByCategory(currentUserId, category);
     }
 
-    public LiveData<List<PantryItem>> getAllItemsByUser(int userId) {
-        return repository.getAllItemsByUser(userId);
+    public void addPantryItem(PantryItem item, FirebasePantryRepository.RepositoryCallback<String> callback) {
+        if (currentUserId == null) {
+            callback.onFailure("User not authenticated");
+            return;
+        }
+        repository.addPantryItem(currentUserId, item, callback);
     }
 
-    public LiveData<List<PantryItem>> getItemsByCategory(int userId, String category) {
-        return repository.getItemsByCategory(userId, category);
+    public void updatePantryItem(PantryItem item, FirebasePantryRepository.RepositoryCallback<Void> callback) {
+        if (currentUserId == null) {
+            callback.onFailure("User not authenticated");
+            return;
+        }
+        repository.updatePantryItem(currentUserId, item, callback);
     }
 
-    public LiveData<List<PantryItem>> searchItems(int userId, String query) {
-        return repository.searchItems(userId, query);
+    public void deletePantryItem(String itemId, FirebasePantryRepository.RepositoryCallback<Void> callback) {
+        if (currentUserId == null) {
+            callback.onFailure("User not authenticated");
+            return;
+        }
+        repository.deletePantryItem(currentUserId, itemId, callback);
     }
 
-    public LiveData<List<PantryItem>> getExpiringItems(int userId, long expiryThreshold) {
-        return repository.getExpiringItems(userId, expiryThreshold);
+    public void getPantryItemById(String itemId, FirebasePantryRepository.RepositoryCallback<PantryItem> callback) {
+        if (currentUserId == null) {
+            callback.onFailure("User not authenticated");
+            return;
+        }
+        repository.getPantryItemById(currentUserId, itemId, callback);
     }
 
-    public LiveData<PantryItem> getItemById(int itemId) {
-        return repository.getItemById(itemId);
-    }
-
-    public void deleteItemById(int userId, int itemId) {
-        repository.deleteItemById(userId, itemId);
+    public void searchByName(String searchQuery, FirebasePantryRepository.RepositoryCallback<List<PantryItem>> callback) {
+        if (currentUserId == null) {
+            callback.onFailure("User not authenticated");
+            return;
+        }
+        repository.searchByName(currentUserId, searchQuery, callback);
     }
 }

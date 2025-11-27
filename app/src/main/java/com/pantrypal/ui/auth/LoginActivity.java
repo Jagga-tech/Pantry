@@ -3,6 +3,7 @@ package com.pantrypal.ui.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseUser;
 import com.pantrypal.R;
+import com.pantrypal.data.firebase.FirebaseAuthManager;
+import com.pantrypal.data.model.User;
+import com.pantrypal.data.repository.FirebaseUserRepository;
 import com.pantrypal.databinding.ActivityLoginBinding;
 import com.pantrypal.ui.home.HomeActivity;
 import com.pantrypal.util.SharedPreferencesManager;
@@ -20,12 +25,17 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout emailLayout, passwordLayout;
     private TextInputEditText emailInput, passwordInput;
     private MaterialButton loginButton;
+    private FirebaseAuthManager authManager;
+    private FirebaseUserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        authManager = new FirebaseAuthManager();
+        userRepository = new FirebaseUserRepository();
 
         initializeViews();
         setupListeners();
@@ -56,16 +66,57 @@ public class LoginActivity extends AppCompatActivity {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
-        // Allow login without validation
-        // Save login state
-        SharedPreferencesManager.setLoggedIn(this, true);
-        SharedPreferencesManager.setUserId(this, 1); // Simulated user ID
-        SharedPreferencesManager.setUserEmail(this, email.isEmpty() ? "user@example.com" : email);
+        if (!validateInputs(email, password)) {
+            return;
+        }
 
-        // Navigate to Home
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+        // Show loading state
+        loginButton.setEnabled(false);
+        loginButton.setText("Logging in...");
+
+        // Sign in with Firebase
+        authManager.signInWithEmail(email, password, new FirebaseAuthManager.AuthCallback() {
+            @Override
+            public void onSuccess(FirebaseUser firebaseUser) {
+                if (firebaseUser != null) {
+                    // Create or update user in Firestore
+                    User user = User.fromFirebaseUser(firebaseUser);
+                    userRepository.createUser(user, new FirebaseUserRepository.RepositoryCallback<Void>() {
+                        @Override
+                        public void onSuccess(Void data) {
+                            // Save user ID in SharedPreferences
+                            SharedPreferencesManager.setLoggedIn(LoginActivity.this, true);
+                            SharedPreferencesManager.setUserEmail(LoginActivity.this, firebaseUser.getEmail());
+
+                            // Navigate to Home
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(String error) {
+                            // Even if Firestore fails, still navigate if auth succeeded
+                            SharedPreferencesManager.setLoggedIn(LoginActivity.this, true);
+                            SharedPreferencesManager.setUserEmail(LoginActivity.this, firebaseUser.getEmail());
+
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+                // Reset button state
+                loginButton.setEnabled(true);
+                loginButton.setText("Login");
+
+                Toast.makeText(LoginActivity.this, "Login failed: " + error, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private boolean validateInputs(String email, String password) {
@@ -92,10 +143,5 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return isValid;
-    }
-
-    private boolean isValidCredentials(String email, String password) {
-        // Temporary validation - in real app this would query the database
-        return !email.isEmpty() && !password.isEmpty();
     }
 }

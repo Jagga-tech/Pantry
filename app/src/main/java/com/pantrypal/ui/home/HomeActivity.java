@@ -12,7 +12,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pantrypal.R;
+import com.pantrypal.data.firebase.FirebaseAuthManager;
 import com.pantrypal.databinding.ActivityHomeBinding;
 import com.pantrypal.ui.auth.LoginActivity;
 import com.pantrypal.util.SharedPreferencesManager;
@@ -20,10 +23,24 @@ import com.pantrypal.util.SharedPreferencesManager;
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private NavController navController;
+    private FirebaseAuthManager authManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        authManager = new FirebaseAuthManager();
+
+        // Check if user is authenticated
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            // User not authenticated, redirect to LoginActivity
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -69,8 +86,15 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
+            // Sign out from Firebase
+            authManager.signOut();
+
+            // Clear SharedPreferences
             SharedPreferencesManager.logout(this);
+
+            // Navigate to LoginActivity
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
             return true;
