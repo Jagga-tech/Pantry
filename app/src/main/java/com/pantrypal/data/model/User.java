@@ -31,10 +31,38 @@ public class User {
     private Date createdAt;
     private Date lastLoginAt;
 
+    // Nutrition Goals
+    private int dailyCalorieGoal;      // Target calories per day
+    private int dailyProteinGoal;      // Target protein in grams
+    private int dailyCarbsGoal;        // Target carbs in grams
+    private int dailyFatGoal;          // Target fat in grams
+
+    // Current nutrition tracking (resets daily)
+    private int currentCalories;
+    private int currentProtein;
+    private int currentCarbs;
+    private int currentFat;
+    private Date lastNutritionReset;   // Date when nutrition was last reset
+
+    // Meal Planning
+    private String mealPlanPreference; // "weekly", "daily", "custom"
+    private int mealsPerDay;           // Number of meals per day (default: 3)
+
     // Default constructor required for Firestore
     public User() {
         this.id = "";
         this.createdAt = new Date();
+        this.dailyCalorieGoal = 2000;  // Default 2000 calories
+        this.dailyProteinGoal = 50;    // Default 50g protein
+        this.dailyCarbsGoal = 250;     // Default 250g carbs
+        this.dailyFatGoal = 70;        // Default 70g fat
+        this.currentCalories = 0;
+        this.currentProtein = 0;
+        this.currentCarbs = 0;
+        this.currentFat = 0;
+        this.lastNutritionReset = new Date();
+        this.mealPlanPreference = "weekly";
+        this.mealsPerDay = 3;
     }
 
     public User(String id, String name, String email, String passwordHash, String profilePicUrl, String dietaryPreferences, Date createdAt) {
@@ -79,6 +107,24 @@ public class User {
         map.put("dietaryPreferences", dietaryPreferences != null ? dietaryPreferences : "");
         map.put("createdAt", createdAt != null ? createdAt : new Date());
         map.put("lastLoginAt", lastLoginAt != null ? lastLoginAt : new Date());
+
+        // Nutrition goals
+        map.put("dailyCalorieGoal", dailyCalorieGoal);
+        map.put("dailyProteinGoal", dailyProteinGoal);
+        map.put("dailyCarbsGoal", dailyCarbsGoal);
+        map.put("dailyFatGoal", dailyFatGoal);
+
+        // Current nutrition tracking
+        map.put("currentCalories", currentCalories);
+        map.put("currentProtein", currentProtein);
+        map.put("currentCarbs", currentCarbs);
+        map.put("currentFat", currentFat);
+        map.put("lastNutritionReset", lastNutritionReset != null ? lastNutritionReset : new Date());
+
+        // Meal planning
+        map.put("mealPlanPreference", mealPlanPreference != null ? mealPlanPreference : "weekly");
+        map.put("mealsPerDay", mealsPerDay);
+
         // Note: passwordHash is excluded from Firestore
         return map;
     }
@@ -109,4 +155,77 @@ public class User {
 
     public Date getLastLoginAt() { return lastLoginAt; }
     public void setLastLoginAt(Date lastLoginAt) { this.lastLoginAt = lastLoginAt; }
+
+    // Nutrition Goals Getters and Setters
+    public int getDailyCalorieGoal() { return dailyCalorieGoal; }
+    public void setDailyCalorieGoal(int dailyCalorieGoal) { this.dailyCalorieGoal = dailyCalorieGoal; }
+
+    public int getDailyProteinGoal() { return dailyProteinGoal; }
+    public void setDailyProteinGoal(int dailyProteinGoal) { this.dailyProteinGoal = dailyProteinGoal; }
+
+    public int getDailyCarbsGoal() { return dailyCarbsGoal; }
+    public void setDailyCarbsGoal(int dailyCarbsGoal) { this.dailyCarbsGoal = dailyCarbsGoal; }
+
+    public int getDailyFatGoal() { return dailyFatGoal; }
+    public void setDailyFatGoal(int dailyFatGoal) { this.dailyFatGoal = dailyFatGoal; }
+
+    // Current Nutrition Tracking Getters and Setters
+    public int getCurrentCalories() { return currentCalories; }
+    public void setCurrentCalories(int currentCalories) { this.currentCalories = currentCalories; }
+
+    public int getCurrentProtein() { return currentProtein; }
+    public void setCurrentProtein(int currentProtein) { this.currentProtein = currentProtein; }
+
+    public int getCurrentCarbs() { return currentCarbs; }
+    public void setCurrentCarbs(int currentCarbs) { this.currentCarbs = currentCarbs; }
+
+    public int getCurrentFat() { return currentFat; }
+    public void setCurrentFat(int currentFat) { this.currentFat = currentFat; }
+
+    public Date getLastNutritionReset() { return lastNutritionReset; }
+    public void setLastNutritionReset(Date lastNutritionReset) { this.lastNutritionReset = lastNutritionReset; }
+
+    // Meal Planning Getters and Setters
+    public String getMealPlanPreference() { return mealPlanPreference; }
+    public void setMealPlanPreference(String mealPlanPreference) { this.mealPlanPreference = mealPlanPreference; }
+
+    public int getMealsPerDay() { return mealsPerDay; }
+    public void setMealsPerDay(int mealsPerDay) { this.mealsPerDay = mealsPerDay; }
+
+    // Helper methods
+    public void addNutrition(int calories, int protein, int carbs, int fat) {
+        this.currentCalories += calories;
+        this.currentProtein += protein;
+        this.currentCarbs += carbs;
+        this.currentFat += fat;
+    }
+
+    public void resetDailyNutrition() {
+        this.currentCalories = 0;
+        this.currentProtein = 0;
+        this.currentCarbs = 0;
+        this.currentFat = 0;
+        this.lastNutritionReset = new Date();
+    }
+
+    public int getRemainingCalories() {
+        return Math.max(0, dailyCalorieGoal - currentCalories);
+    }
+
+    public int getRemainingProtein() {
+        return Math.max(0, dailyProteinGoal - currentProtein);
+    }
+
+    public int getRemainingCarbs() {
+        return Math.max(0, dailyCarbsGoal - currentCarbs);
+    }
+
+    public int getRemainingFat() {
+        return Math.max(0, dailyFatGoal - currentFat);
+    }
+
+    public int getCalorieProgress() {
+        if (dailyCalorieGoal == 0) return 0;
+        return Math.min(100, (currentCalories * 100) / dailyCalorieGoal);
+    }
 }
