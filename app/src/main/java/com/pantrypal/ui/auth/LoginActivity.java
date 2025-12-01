@@ -84,8 +84,9 @@ public class LoginActivity extends AppCompatActivity {
                     userRepository.createUser(user, new FirebaseUserRepository.RepositoryCallback<Void>() {
                         @Override
                         public void onSuccess(Void data) {
-                            // Save user ID in SharedPreferences
+                            // Save user info in SharedPreferences
                             SharedPreferencesManager.setLoggedIn(LoginActivity.this, true);
+                            SharedPreferencesManager.setUserId(LoginActivity.this, firebaseUser.getUid());
                             SharedPreferencesManager.setUserEmail(LoginActivity.this, firebaseUser.getEmail());
 
                             // Navigate to Home
@@ -98,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onFailure(String error) {
                             // Even if Firestore fails, still navigate if auth succeeded
                             SharedPreferencesManager.setLoggedIn(LoginActivity.this, true);
+                            SharedPreferencesManager.setUserId(LoginActivity.this, firebaseUser.getUid());
                             SharedPreferencesManager.setUserEmail(LoginActivity.this, firebaseUser.getEmail());
 
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

@@ -21,6 +21,7 @@
     <dimen name="corner_radius_18">18dp</dimen>
 
     <!-- Text Sizes -->
+    <dimen name="text_size_10">10sp</dimen>
     <dimen name="text_size_11">11sp</dimen>
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_13">13sp</dimen>

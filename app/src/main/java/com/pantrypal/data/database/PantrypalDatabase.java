@@ -42,30 +42,6 @@ public abstract class PantrypalDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             PantrypalDatabase.class, "pantrypal_database")
                             .fallbackToDestructiveMigration()
-                            .allowMainThreadQueries()
-                            .addCallback(new Callback() {
-                                @Override
-                                public void onCreate(SupportSQLiteDatabase db) {
-                                    super.onCreate(db);
-                                    // Populate with mock data on background thread to avoid lock conflicts
-                                    Log.d(TAG, "🔧 Database created - scheduling initial mock data load");
-                                    Executors.newSingleThreadExecutor().execute(() -> {
-                                        Log.d(TAG, "🔧 Loading initial mock data...");
-                                        populateMockData(INSTANCE);
-                                    });
-                                }
-
-                                @Override
-                                public void onOpen(SupportSQLiteDatabase db) {
-                                    super.onOpen(db);
-                                    // Clear and reload mock data on every open (for testing)
-                                    Log.d(TAG, "🔓 Database opened - scheduling mock data reload");
-                                    Executors.newSingleThreadExecutor().execute(() -> {
-                                        Log.d(TAG, "🔓 Reloading mock data...");
-                                        clearAndReloadMockData(INSTANCE);
-                                    });
-                                }
-                            })
                             .build();
                 }
             }

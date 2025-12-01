@@ -30,7 +30,7 @@ public class UserRepository {
         new Thread(() -> userDao.delete(user)).start();
     }
 
-    public LiveData<User> getUserById(int userId) {
+    public LiveData<User> getUserById(String userId) {
         return userDao.getUserById(userId);
     }
 

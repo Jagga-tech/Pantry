@@ -121,6 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onSuccess(Void data) {
                             // Save user info in SharedPreferences
                             SharedPreferencesManager.setLoggedIn(SignUpActivity.this, true);
+                            SharedPreferencesManager.setUserId(SignUpActivity.this, firebaseUser.getUid());
                             SharedPreferencesManager.setUserEmail(SignUpActivity.this, firebaseUser.getEmail());
                             SharedPreferencesManager.setUserName(SignUpActivity.this, name);
 
@@ -136,6 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onFailure(String error) {
                             // Even if Firestore fails, still navigate if auth succeeded
                             SharedPreferencesManager.setLoggedIn(SignUpActivity.this, true);
+                            SharedPreferencesManager.setUserId(SignUpActivity.this, firebaseUser.getUid());
                             SharedPreferencesManager.setUserEmail(SignUpActivity.this, firebaseUser.getEmail());
                             SharedPreferencesManager.setUserName(SignUpActivity.this, name);
 

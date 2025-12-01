@@ -23,20 +23,26 @@ public interface PantryItemDao {
     void delete(PantryItem pantryItem);
 
     @Query("SELECT * FROM pantry_items WHERE userId = :userId ORDER BY ingredientName ASC")
-    LiveData<List<PantryItem>> getAllItemsByUser(int userId);
+    LiveData<List<PantryItem>> getAllItemsByUser(String userId);
 
     @Query("SELECT * FROM pantry_items WHERE userId = :userId AND category = :category ORDER BY ingredientName ASC")
-    LiveData<List<PantryItem>> getItemsByCategory(int userId, String category);
+    LiveData<List<PantryItem>> getItemsByCategory(String userId, String category);
 
     @Query("SELECT * FROM pantry_items WHERE userId = :userId AND ingredientName LIKE '%' || :query || '%'")
-    LiveData<List<PantryItem>> searchItems(int userId, String query);
+    LiveData<List<PantryItem>> searchItems(String userId, String query);
 
     @Query("SELECT * FROM pantry_items WHERE userId = :userId AND expirationDate <= :expiryThreshold")
-    LiveData<List<PantryItem>> getExpiringItems(int userId, long expiryThreshold);
+    LiveData<List<PantryItem>> getExpiringItems(String userId, long expiryThreshold);
 
     @Query("SELECT * FROM pantry_items WHERE id = :itemId")
-    LiveData<PantryItem> getItemById(int itemId);
+    LiveData<PantryItem> getItemById(String itemId);
+
+    @Query("SELECT * FROM pantry_items WHERE id = :itemId")
+    PantryItem getItemByIdSync(String itemId);
 
     @Query("DELETE FROM pantry_items WHERE userId = :userId AND id = :itemId")
-    void deleteItemById(int userId, int itemId);
+    void deleteItemById(String userId, String itemId);
+
+    @Query("DELETE FROM pantry_items")
+    void deleteAll();
 }

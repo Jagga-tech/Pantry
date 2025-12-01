@@ -45,6 +45,13 @@ public class FirebasePantryRepository {
      * Get all pantry items with real-time updates
      */
     public LiveData<List<PantryItem>> getAllPantryItems(String userId) {
+        return getPantryItemsByUser(userId);
+    }
+
+    /**
+     * Get pantry items by user with real-time updates
+     */
+    public LiveData<List<PantryItem>> getPantryItemsByUser(String userId) {
         MutableLiveData<List<PantryItem>> liveData = new MutableLiveData<>();
 
         getPantryItemsCollection(userId)
@@ -142,6 +149,42 @@ public class FirebasePantryRepository {
                 .addOnFailureListener(e -> {
                     callback.onFailure(e.getMessage() != null ? e.getMessage() : "Failed to add item");
                 });
+    }
+
+    /**
+     * Create or update pantry item
+     */
+    public void createPantryItem(PantryItem item, RepositoryCallback<Void> callback) {
+        if (item.getUserId() == null || item.getUserId().isEmpty()) {
+            callback.onFailure("User ID is required");
+            return;
+        }
+
+        if (item.getId() == null || item.getId().isEmpty()) {
+            // Create new item
+            item.setCreatedAt(new Date());
+            item.setUpdatedAt(new Date());
+            getPantryItemsCollection(item.getUserId())
+                    .add(item.toFirestoreMap())
+                    .addOnSuccessListener(documentReference -> {
+                        callback.onSuccess(null);
+                    })
+                    .addOnFailureListener(e -> {
+                        callback.onFailure(e.getMessage() != null ? e.getMessage() : "Failed to create item");
+                    });
+        } else {
+            // Update existing item
+            item.setUpdatedAt(new Date());
+            getPantryItemsCollection(item.getUserId())
+                    .document(item.getId())
+                    .set(item.toFirestoreMap())
+                    .addOnSuccessListener(aVoid -> {
+                        callback.onSuccess(null);
+                    })
+                    .addOnFailureListener(e -> {
+                        callback.onFailure(e.getMessage() != null ? e.getMessage() : "Failed to update item");
+                    });
+        }
     }
 
     /**

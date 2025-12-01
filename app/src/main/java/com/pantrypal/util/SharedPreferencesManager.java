@@ -31,12 +31,12 @@ public class SharedPreferencesManager {
         getSharedPreferences(context).edit().putBoolean(KEY_LOGGED_IN, isLoggedIn).apply();
     }
 
-    public static int getUserId(Context context) {
-        return getSharedPreferences(context).getInt(KEY_USER_ID, -1);
+    public static String getUserId(Context context) {
+        return getSharedPreferences(context).getString(KEY_USER_ID, "");
     }
 
-    public static void setUserId(Context context, int userId) {
-        getSharedPreferences(context).edit().putInt(KEY_USER_ID, userId).apply();
+    public static void setUserId(Context context, String userId) {
+        getSharedPreferences(context).edit().putString(KEY_USER_ID, userId != null ? userId : "").apply();
     }
 
     public static String getUserEmail(Context context) {
@@ -58,9 +58,13 @@ public class SharedPreferencesManager {
     public static void logout(Context context) {
         getSharedPreferences(context).edit()
                 .putBoolean(KEY_LOGGED_IN, false)
-                .putInt(KEY_USER_ID, -1)
+                .putString(KEY_USER_ID, "")
                 .putString(KEY_USER_EMAIL, "")
                 .putString(KEY_USER_NAME, "")
                 .apply();
+    }
+
+    public static void clearUserData(Context context) {
+        logout(context);
     }
 }

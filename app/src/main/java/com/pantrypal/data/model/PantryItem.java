@@ -2,6 +2,7 @@ package com.pantrypal.data.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.firebase.firestore.DocumentId;
@@ -39,6 +40,7 @@ public class PantryItem {
         this.userId = "";
     }
 
+    @Ignore
     public PantryItem(String id, String userId, String ingredientName, String category, String quantity,
                       String unit, Date expirationDate, String notes, String barcode) {
         this.id = id;

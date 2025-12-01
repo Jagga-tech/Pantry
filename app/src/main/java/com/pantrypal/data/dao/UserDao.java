@@ -21,11 +21,17 @@ public interface UserDao {
     void delete(User user);
 
     @Query("SELECT * FROM users WHERE id = :userId")
-    LiveData<User> getUserById(int userId);
+    LiveData<User> getUserById(String userId);
 
     @Query("SELECT * FROM users WHERE email = :email")
     User getUserByEmail(String email);
 
+    @Query("SELECT * FROM users WHERE id = :userId")
+    User getUserByIdSync(String userId);
+
     @Query("SELECT * FROM users LIMIT 1")
     LiveData<User> getCurrentUser();
+
+    @Query("DELETE FROM users")
+    void deleteAll();
 }

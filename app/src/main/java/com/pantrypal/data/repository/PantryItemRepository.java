@@ -30,27 +30,27 @@ public class PantryItemRepository {
         new Thread(() -> pantryItemDao.delete(pantryItem)).start();
     }
 
-    public LiveData<List<PantryItem>> getAllItemsByUser(int userId) {
+    public LiveData<List<PantryItem>> getAllItemsByUser(String userId) {
         return pantryItemDao.getAllItemsByUser(userId);
     }
 
-    public LiveData<List<PantryItem>> getItemsByCategory(int userId, String category) {
+    public LiveData<List<PantryItem>> getItemsByCategory(String userId, String category) {
         return pantryItemDao.getItemsByCategory(userId, category);
     }
 
-    public LiveData<List<PantryItem>> searchItems(int userId, String query) {
+    public LiveData<List<PantryItem>> searchItems(String userId, String query) {
         return pantryItemDao.searchItems(userId, query);
     }
 
-    public LiveData<List<PantryItem>> getExpiringItems(int userId, long expiryThreshold) {
+    public LiveData<List<PantryItem>> getExpiringItems(String userId, long expiryThreshold) {
         return pantryItemDao.getExpiringItems(userId, expiryThreshold);
     }
 
-    public LiveData<PantryItem> getItemById(int itemId) {
+    public LiveData<PantryItem> getItemById(String itemId) {
         return pantryItemDao.getItemById(itemId);
     }
 
-    public void deleteItemById(int userId, int itemId) {
+    public void deleteItemById(String userId, String itemId) {
         new Thread(() -> pantryItemDao.deleteItemById(userId, itemId)).start();
     }
 }

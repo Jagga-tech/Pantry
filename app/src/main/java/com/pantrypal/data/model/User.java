@@ -65,7 +65,8 @@ public class User {
         this.mealsPerDay = 3;
     }
 
-    public User(String id, String name, String email, String passwordHash, String profilePicUrl, String dietaryPreferences, Date createdAt) {
+    @Ignore
+    public User(@NonNull String id, String name, String email, String passwordHash, String profilePicUrl, String dietaryPreferences, Date createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -130,8 +131,9 @@ public class User {
     }
 
     // Getters and Setters
+    @NonNull
     public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public void setId(@NonNull String id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -171,28 +173,38 @@ public class User {
 
     // Current Nutrition Tracking Getters and Setters
     public int getCurrentCalories() { return currentCalories; }
+    @SuppressWarnings("unused")
     public void setCurrentCalories(int currentCalories) { this.currentCalories = currentCalories; }
 
     public int getCurrentProtein() { return currentProtein; }
+    @SuppressWarnings("unused")
     public void setCurrentProtein(int currentProtein) { this.currentProtein = currentProtein; }
 
     public int getCurrentCarbs() { return currentCarbs; }
+    @SuppressWarnings("unused")
     public void setCurrentCarbs(int currentCarbs) { this.currentCarbs = currentCarbs; }
 
     public int getCurrentFat() { return currentFat; }
+    @SuppressWarnings("unused")
     public void setCurrentFat(int currentFat) { this.currentFat = currentFat; }
 
     public Date getLastNutritionReset() { return lastNutritionReset; }
+    @SuppressWarnings("unused")
     public void setLastNutritionReset(Date lastNutritionReset) { this.lastNutritionReset = lastNutritionReset; }
 
     // Meal Planning Getters and Setters
+    @SuppressWarnings("unused")
     public String getMealPlanPreference() { return mealPlanPreference; }
+    @SuppressWarnings("unused")
     public void setMealPlanPreference(String mealPlanPreference) { this.mealPlanPreference = mealPlanPreference; }
 
+    @SuppressWarnings("unused")
     public int getMealsPerDay() { return mealsPerDay; }
+    @SuppressWarnings("unused")
     public void setMealsPerDay(int mealsPerDay) { this.mealsPerDay = mealsPerDay; }
 
     // Helper methods
+    @SuppressWarnings("unused")
     public void addNutrition(int calories, int protein, int carbs, int fat) {
         this.currentCalories += calories;
         this.currentProtein += protein;
@@ -212,14 +224,17 @@ public class User {
         return Math.max(0, dailyCalorieGoal - currentCalories);
     }
 
+    @SuppressWarnings("unused")
     public int getRemainingProtein() {
         return Math.max(0, dailyProteinGoal - currentProtein);
     }
 
+    @SuppressWarnings("unused")
     public int getRemainingCarbs() {
         return Math.max(0, dailyCarbsGoal - currentCarbs);
     }
 
+    @SuppressWarnings("unused")
     public int getRemainingFat() {
         return Math.max(0, dailyFatGoal - currentFat);
     }
