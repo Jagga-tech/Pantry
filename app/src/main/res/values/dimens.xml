@@ -80,4 +80,10 @@
     
     <!-- Max Content Width (for layout constraints) -->
     <dimen name="max_content_width">1000dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_1">1dp</dimen>
+    <dimen name="elevation_2">2dp</dimen>
+    <dimen name="elevation_4">4dp</dimen>
+    <dimen name="elevation_8">8dp</dimen>
 </resources>

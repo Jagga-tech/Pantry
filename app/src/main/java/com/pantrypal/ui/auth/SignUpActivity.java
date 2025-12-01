@@ -18,6 +18,7 @@ import com.pantrypal.data.firebase.FirebaseAuthManager;
 import com.pantrypal.data.repository.FirebaseUserRepository;
 import com.pantrypal.databinding.ActivitySignupBinding;
 import com.pantrypal.ui.home.HomeActivity;
+import com.pantrypal.ui.onboarding.ProfileSetupActivity;
 import com.pantrypal.util.SharedPreferencesManager;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -127,8 +128,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                             Toast.makeText(SignUpActivity.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
 
-                            // Navigate to Home
-                            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                            // Navigate to Profile Setup for new users
+                            Intent intent = new Intent(SignUpActivity.this, ProfileSetupActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -143,7 +144,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                             Toast.makeText(SignUpActivity.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                            // Navigate to Profile Setup for new users
+                            Intent intent = new Intent(SignUpActivity.this, ProfileSetupActivity.class);
                             startActivity(intent);
                             finish();
                         }
